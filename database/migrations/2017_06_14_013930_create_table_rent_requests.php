@@ -15,12 +15,13 @@ class CreateTableRentRequests extends Migration
     {
         Schema::create('rent_requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('state');
-            $table->string('message');
+            $table->string('status');
+            $table->date('request_date');
             $table->integer('id_department')->unsigned();
-            $table->integer('id_user')->unsigned();
+            $table->integer('id_applicant')->unsigned();
+
             $table->foreign('id_department')->references('id')->on('departments');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_applicant')->references('id')->on('users');
             $table->timestamps();
         });
     }

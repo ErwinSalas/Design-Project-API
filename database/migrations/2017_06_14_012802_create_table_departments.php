@@ -17,16 +17,17 @@ class CreateTableDepartments extends Migration
             $table->increments('id');
             $table->integer('id_owner')->unsigned();
             $table->integer('id_renter')->unsigned();
-            $table->string('direction');
-            $table->integer('rooms_num');
-            $table->integer('bath-num');
+            $table->string('address');
+            $table->integer('rooms_amount');
+            $table->integer('bath_amount');
             $table->boolean('internet_service');
             $table->boolean('light_service');
             $table->boolean('water_service');
-            $table->integer('rate');
+            $table->integer('rate')->default(0);
             $table->double('latitude');
             $table->double('longitude');
-            $table->integer('amount');
+            $table->integer('payment_amount');
+
             $table->foreign('id_owner')->references('id')->on('users');
             $table->foreign('id_renter')->references('id')->on('users');
             $table->timestamps();

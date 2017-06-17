@@ -18,6 +18,8 @@ class CreateTableComments extends Migration
             $table->string('message');
             $table->integer('id_department')->unsigned();
             $table->integer('id_user')->unsigned();
+            $table->tinyInteger('score');
+
             $table->foreign('id_department')->references('id')->on('departments');
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();

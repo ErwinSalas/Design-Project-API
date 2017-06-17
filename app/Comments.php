@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Comments extends Model
 {
     protected $fillable=[
-        'state',
         'id_user',
         'message',
-        'rate',
+        'score',
         'id_department'
     ];
 }

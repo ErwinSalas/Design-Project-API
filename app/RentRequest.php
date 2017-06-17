@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class RentRequest extends Model
 {
     protected $fillable=[
-        'state',
-        'id_user',
-        'message',
+        'status',
+        'id_applicant',
+        'request_date',
         'id_department',
 
     ];
@@ -17,7 +17,6 @@ class RentRequest extends Model
         $department=Department::find($this->id_department);
         if($department->id_owner==$id_owner){
             return $query;
-
         }
         else{
             return null;

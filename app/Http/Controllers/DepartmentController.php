@@ -17,6 +17,7 @@ class DepartmentController extends Controller
         $departments=Department::all();
         return response()->json($departments);
     }
+
     public function indexOwner($id_owner)
     {
         $departments=Department::owner($id_owner);

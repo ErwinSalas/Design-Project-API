@@ -9,15 +9,16 @@ class Department extends Model
     protected $fillable=[
         'id_owner',
         'id_renter',
-        'direction',
-        'rooms_num',
-        'bath-num',
+        'address',
+        'rooms_amount',
+        'bath_amount',
         'internet_service',
         'light_service',
         'water_service',
         'rate',
         'latitude',
-        'longitude'
+        'longitude',
+        'payment_amount'
     ];
     public function scopeOwner($query,$id){
         return $query->where('id_owner',$id);
