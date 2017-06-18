@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use League\Flysystem\Exception;
+use App\Department;
 
 class UserController extends Controller
 {
