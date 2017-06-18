@@ -110,7 +110,7 @@ class UserController extends Controller
     public function userDepartments($id){
         $user = User::find($id);
         if($user){
-            $departments = $user->departments();
+            $departments = $user->departments()->get();
             return response()->json($departments);
         }
     }
