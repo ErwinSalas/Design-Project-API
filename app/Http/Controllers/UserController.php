@@ -105,4 +105,12 @@ class UserController extends Controller
             return response()->json(['msg' => 'El usuario no existe.'], 404);
         }
     }
+
+    public function userDepartments($id){
+        $user = User::find($id);
+        if($user){
+            $departments = $user->departments();
+            return response()->json($departments);
+        }
+    }
 }
