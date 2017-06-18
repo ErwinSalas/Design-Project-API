@@ -35,7 +35,7 @@ class User extends Authenticatable
 
     public function departments()  //los departamentos que sube el usuario
     {
-        return $this->hasMany('Department');
+        return $this->hasMany('App\Department');
     }
 
     public function rent_requests()  //las solicitudes de un usuario
