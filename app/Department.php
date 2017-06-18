@@ -29,7 +29,7 @@ class Department extends Model
 
     public function owner() //propietario de una propiedad
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('User','id_owner','id');
     }
 
     public function requests(){
