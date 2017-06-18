@@ -16,7 +16,7 @@ class CreateTableDepartments extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_owner')->unsigned();
-            $table->integer('id_renter')->unsigned();
+            $table->string('description');
             $table->string('address');
             $table->integer('rooms_amount');
             $table->integer('bath_amount');
@@ -24,15 +24,14 @@ class CreateTableDepartments extends Migration
             $table->boolean('light_service');
             $table->boolean('water_service');
             $table->integer('rate')->default(0);
+            $table->boolean('is_rented')->default(false);
             $table->double('latitude');
             $table->double('longitude');
             $table->integer('payment_amount');
 
             $table->foreign('id_owner')->references('id')->on('users');
-            $table->foreign('id_renter')->references('id')->on('users');
             $table->timestamps();
         });
-        //
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use Illuminate\Http\Request;
+use League\Flysystem\Exception;
 
 class DepartmentController extends Controller
 {
@@ -42,7 +43,28 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        Department::create($request->all());
+        try{
+            $department = new Department();
+
+            $department->id_owner = $request->id_owner;
+            $department->description = $request->description;
+            $department->address = $request->address;
+            $department->rooms_amount = $request->rooms_amount;
+            $department->bath_amount = $request->bath_amount;
+            $department->internet_service = $request->internet_service;
+            $department->light_service = $request->light_service;
+            $department->water_service = $request->water_service;
+            $department->is_rented = $request->is_rented;
+            $department->latitude = $request->latitude;
+            $department->longitude = $request->longitude;
+            $department->payment_amount = $request->payment_amount;
+
+            $department->save();
+            return response()->json(['msg' => 'El departamento fue insertado exitosamente']);
+        }catch (Exception $exception){
+            $errorMsg = $exception->getMessage();
+            return response()->json(['msg' => $errorMsg],500);
+        }
     }
 
     /**
@@ -54,7 +76,7 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $department= Department::find($id);
-        return json_decode($department);
+        return response()->json($department);
     }
 
     /**
@@ -88,6 +110,12 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $department= Department::find($id);
+        if($department){
+            $department->delete();
+            return response()->json(['msg' => 'El departamento ha sido eliminado exitosamente.']);
+        }else{
+            return response()->json(['msg' => 'El departamento no existe.'], 404);
+        }
     }
 }

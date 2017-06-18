@@ -26,4 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function comments()  //los comentarios de un usuario
+    {
+        return $this->hasMany('Comments');
+    }
+
+    public function departments()  //los departamentos que sube el usuario
+    {
+        return $this->hasMany('Department');
+    }
+
+    public function rent_requests()  //las solicitudes de un usuario
+    {
+        return $this->hasMany('RentRequest');
+    }
 }

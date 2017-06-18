@@ -12,4 +12,14 @@ class Comments extends Model
         'score',
         'id_department'
     ];
+
+    public function department() //departamento al que se realiza un comentario
+    {
+        return $this->belongsTo('Department');
+    }
+
+    public function user() //usuario que hizo el comentario
+    {
+        return $this->belongsTo('User');
+    }
 }

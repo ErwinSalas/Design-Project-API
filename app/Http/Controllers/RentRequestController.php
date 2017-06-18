@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\RentRequest;
 use Illuminate\Http\Request;
 
 class RentRequestController extends Controller
@@ -13,7 +14,8 @@ class RentRequestController extends Controller
      */
     public function index()
     {
-        //
+        $rents_request = RentRequest::all();
+        return response()->json($rents_request);
     }
 
     /**
@@ -34,7 +36,18 @@ class RentRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $rent_request = new RentRequest();
+
+            $rent_request->id_department = $request->id_department;
+            $rent_request->id_applicant = $request->id_applicant;
+
+            $rent_request->save();
+            return response()->json(['msg' => 'La solicitud se envio exitosamente']);
+        }catch (Exception $exception){
+            $errorMsg = $exception->getMessage();
+            return response()->json(['msg' => $errorMsg],500);
+        }
     }
 
     /**

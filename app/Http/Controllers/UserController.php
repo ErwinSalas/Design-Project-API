@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use League\Flysystem\Exception;
 
 class UserController extends Controller
 {
@@ -13,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return response()->json($users);
     }
 
     /**
@@ -34,7 +37,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $user = new User();
+
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->phone = $request->phone;
+
+            $user->save();
+            return response()->json(['msg' => 'El usuario se creo exitosamente']);
+        }catch (Exception $exception){
+            $errorMsg = $exception->getMessage();
+            return response()->json(['msg' => $errorMsg],500);
+        }
+
     }
 
     /**
@@ -45,7 +62,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return response()->json($user);
     }
 
     /**
@@ -79,6 +97,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user= User::find($id);
+        if($user){
+            $user->delete();
+            return response()->json(['msg' => 'El usuario ha sido eliminado exitosamente.']);
+        }else{
+            return response()->json(['msg' => 'El usuario no existe.'], 404);
+        }
     }
 }

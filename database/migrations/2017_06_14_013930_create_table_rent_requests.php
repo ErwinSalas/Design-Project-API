@@ -15,8 +15,7 @@ class CreateTableRentRequests extends Migration
     {
         Schema::create('rent_requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('status');
-            $table->date('request_date');
+            $table->string('status')->default('en espera');
             $table->integer('id_department')->unsigned();
             $table->integer('id_applicant')->unsigned();
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Comments;
 use Illuminate\Http\Request;
+use PhpParser\Comment;
+use League\Flysystem\Exception;
 
 class CommentController extends Controller
 {
@@ -13,7 +16,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments=Comment::all();
+        return response()->json($comments);
     }
 
     /**
@@ -34,7 +38,20 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $comment = new Comments();
+
+            $comment->id_department = $request->id_department;
+            $comment->id_user = $request->id_user;
+            $comment->message = $request->message;
+            $comment->score = $request->rooms_amount;
+
+            $comment->save();
+            return response()->json(['msg' => 'El comentario fue insertado exitosamente']);
+        }catch (Exception $exception){
+            $errorMsg = $exception->getMessage();
+            return response()->json(['msg' => $errorMsg],500);
+        }
     }
 
     /**
@@ -79,6 +96,12 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comments::find($id);
+        if($comment){
+            $comment->delete();
+            return response()->json(['msg' => 'El comentario ha sido eliminado exitosamente.']);
+        }else{
+            return response()->json(['msg' => 'El comentario no existe.'], 404);
+        }
     }
 }
