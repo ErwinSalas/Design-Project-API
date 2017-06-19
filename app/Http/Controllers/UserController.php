@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use League\Flysystem\Exception;
 use App\Department;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
