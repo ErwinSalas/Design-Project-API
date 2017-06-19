@@ -36,8 +36,4 @@ class Department extends Model
     public function requests(){
         return $this->hasMany('RentRequest','id_department');
     }
-
-    public function scopeOwner($query,$id){
-        return $query->where('id_owner',$id);
-    }
 }

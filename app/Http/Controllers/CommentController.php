@@ -117,7 +117,7 @@ class CommentController extends Controller
         foreach ($comments as $comment){
             $totalCommentScore += $comment->score;
         }
-        $result = $totalCommentScore/$comments_amount;
+        $result = (int)$totalCommentScore/$comments_amount;
         $department->rate = $result;
         $department->save();
     }
