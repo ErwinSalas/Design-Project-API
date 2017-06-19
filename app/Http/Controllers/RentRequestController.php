@@ -102,7 +102,7 @@ class RentRequestController extends Controller
 
     public function showPendingRequests($id){
         $user = User::find($id);
-        $departments = Department::where('id_owner',$id);
+        $departments = Department::where('id_owner','=',$id)->get();
         return response()->json($departments);
     }
 
