@@ -117,9 +117,9 @@ class UserController extends Controller
 
     public function login($user,$password){
         $users = User::all();
-        foreach ($users as $user){
-            if(($user->email == $user) && ($user->password == $password)){
-                return response()->json($user,200);
+        foreach ($users as $userIt){
+            if(($userIt->email == $user) && ($userIt->password == $password)){
+                return response()->json($userIt,200);
             }
         }
         return response()->json(['msg'=>'No se pudo autenticar'],500);
