@@ -116,14 +116,12 @@ class UserController extends Controller
     }
 
     public function login($user,$password){
-        $authRequestingUser=DB::table('users')
-            ->where([['email','=', $user],['password','=',$password],])
-            ->get();
-        if($authRequestingUser=!null){
-            return response()->json($authRequestingUser,200);
+        $users = User::all();
+        foreach ($users as $user){
+            if(($user->email == $user) && ($user->password == $password)){
+                return response()->json($user,200);
+            }
         }
-        else{
-            return response()->json(['msg'=>'No se pudo autenticar'],500);
-        }
+        return response()->json(['msg'=>'No se pudo autenticar'],500);
     }
 }
