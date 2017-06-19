@@ -39,6 +39,8 @@ class RentRequestController extends Controller
         try{
             $rent_request = new RentRequest();
 
+            $rent_request->applicant_name = $request->applicant_name;
+            $rent_request->department_name = $request->department_name;
             $rent_request->id_department = $request->id_department;
             $rent_request->id_applicant = $request->id_applicant;
 

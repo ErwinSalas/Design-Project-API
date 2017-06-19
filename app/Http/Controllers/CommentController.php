@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comments;
+use App\Department;
 use Illuminate\Http\Request;
 use PhpParser\Comment;
 use League\Flysystem\Exception;
@@ -47,6 +48,8 @@ class CommentController extends Controller
             $comment->score = $request->score;
 
             $comment->save();
+            $department = Department::find($request->id_department);
+            $this->updateDepartmentScore($department);
             return response()->json(['msg' => 'El comentario fue insertado exitosamente']);
         }catch (Exception $exception){
             $errorMsg = $exception->getMessage();
@@ -98,10 +101,24 @@ class CommentController extends Controller
     {
         $comment = Comments::find($id);
         if($comment){
+            $department = Department::find($comment->id_department);
             $comment->delete();
+            $this->updateDepartmentScore($department);
             return response()->json(['msg' => 'El comentario ha sido eliminado exitosamente.']);
         }else{
             return response()->json(['msg' => 'El comentario no existe.'], 404);
         }
+    }
+
+    public function updateDepartmentScore($department){
+        $comments = $department->comments()->get();
+        $comments_amount = count($comments);
+        $totalCommentScore = 0;
+        foreach ($comments as $comment){
+            $totalCommentScore += $comment->score;
+        }
+        $result = $totalCommentScore/$comments_amount;
+        $department->rate = $result;
+        $department->save();
     }
 }

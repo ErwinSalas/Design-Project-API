@@ -8,6 +8,8 @@ class RentRequest extends Model
 {
     protected $fillable=[
         'status',
+        'applicant_name',
+        'department_name',
         'id_applicant',
         'id_department',
     ];
