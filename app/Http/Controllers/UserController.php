@@ -113,4 +113,17 @@ class UserController extends Controller
             return response()->json($departments);
         }
     }
+
+    public function login($user,$password){
+        $authRequestingUser=DB::table('users')
+            ->where(['email','=', $user],['password','=',$password])
+            ->get();
+        if($authRequestingUser=!null){
+            return $authRequestingUser;
+        }
+        else{
+            return false;
+        }
+
+    }
 }

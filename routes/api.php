@@ -23,5 +23,5 @@ Route::resource('/comments','CommentController');
 Route::resource('/rent_requests','RentRequestController');
 
 Route::get('user-departments/{id}','UserController@userDepartments');
-Route::get('login/{user}/{password}','LoginController@login');
+Route::get('login/{user}/{password}','UserController@login');
 Route::get('acceptRequest/{id}','RentRequestController@acceptRequest');

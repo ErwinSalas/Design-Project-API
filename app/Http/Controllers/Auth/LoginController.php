@@ -37,6 +37,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
     public function login($user,$password){
         $authRequestingUser=DB::table('users')
             ->where(['email','=', $user],['password','=',$password])
