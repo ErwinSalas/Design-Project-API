@@ -106,7 +106,7 @@ class RentRequestController extends Controller
         $requests = array();
         foreach($departments as $department){
             $currentDepartmentRequests = RentRequest::where('id_department',$department->id)->get();
-            if(empty($currentDepartmentRequests)){
+            if(empty($currentDepartmentRequests[0])){
                 echo "vacio";
             }
             else{
