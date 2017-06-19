@@ -106,7 +106,9 @@ class RentRequestController extends Controller
         $requests = array();
         foreach($departments as $department){
             $currentDepartmentRequests = RentRequest::where('id_department',$department->id)->get();
-            array_push($requests,$currentDepartmentRequests);
+            if(!emptyArray($currentDepartmentRequests)){
+                array_push($requests,$currentDepartmentRequests);
+            }
         }
         return response()->json($requests);
     }
