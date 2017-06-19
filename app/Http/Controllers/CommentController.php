@@ -44,7 +44,7 @@ class CommentController extends Controller
             $comment->id_department = $request->id_department;
             $comment->id_user = $request->id_user;
             $comment->message = $request->message;
-            $comment->score = $request->rooms_amount;
+            $comment->score = $request->score;
 
             $comment->save();
             return response()->json(['msg' => 'El comentario fue insertado exitosamente']);
