@@ -120,10 +120,10 @@ class UserController extends Controller
             ->where([['email','=', $user],['password','=',$password],])
             ->get();
         if($authRequestingUser=!null){
-            return response()->json($authRequestingUser);
+            return response()->json($authRequestingUser,200);
         }
         else{
-            return response()->json(['msg'=>'No se pudo autenticar']);
+            return response()->json(['msg'=>'No se pudo autenticar'],500);
         }
     }
 }
