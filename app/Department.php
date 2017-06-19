@@ -8,6 +8,7 @@ class Department extends Model
 {
     protected $fillable=[
         'id_owner',
+        'name',
         'description',
         'address',
         'rooms_amount',
@@ -24,7 +25,7 @@ class Department extends Model
 
     public function comments() //comentarios de una propiedad
     {
-        return $this->hasMany('Comments');
+        return $this->hasMany('Comments','id_department');
     }
 
     public function owner() //propietario de una propiedad
@@ -33,7 +34,7 @@ class Department extends Model
     }
 
     public function requests(){
-        return $this->belongsTo('RentRequest');
+        return $this->hasMany('RentRequest','id_department');
     }
 
     public function scopeOwner($query,$id){

@@ -14,21 +14,11 @@ class RentRequest extends Model
 
     public function applicant() //propietario de una solicitud
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('User','id_applicant','id');
     }
 
     public function department()
     {
-        return $this->hasOne('Department');
-    }
-
-    public function scopeOwner($query,$id_owner){
-        $department=Department::find($this->id_department);
-        if($department->id_owner==$id_owner){
-            return $query;
-        }
-        else{
-            return null;
-        }
+        return $this->belongsTo('Department','id_department','id');
     }
 }

@@ -30,7 +30,7 @@ class User extends Authenticatable
 
     public function comments()  //los comentarios de un usuario
     {
-        return $this->hasMany('Comments');
+        return $this->hasMany('Comments','id_user');
     }
 
     public function departments()  //los departamentos que sube el usuario
@@ -40,6 +40,6 @@ class User extends Authenticatable
 
     public function rent_requests()  //las solicitudes de un usuario
     {
-        return $this->hasMany('RentRequest');
+        return $this->hasMany('RentRequest','id_applicant');
     }
 }

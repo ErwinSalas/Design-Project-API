@@ -48,6 +48,7 @@ class DepartmentController extends Controller
 
             $department->id_owner = $request->id_owner;
             $department->description = $request->description;
+            $department->name = $request->name;
             $department->address = $request->address;
             $department->rooms_amount = $request->rooms_amount;
             $department->bath_amount = $request->bath_amount;
