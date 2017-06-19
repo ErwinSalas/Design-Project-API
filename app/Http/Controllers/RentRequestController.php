@@ -105,7 +105,7 @@ class RentRequestController extends Controller
             $rent_request->status = 'aceptada';
             $rent_request->save();
 
-            $department = $rent_request->department();                                  //Department::find($rent_request->id_department);
+            $department = $rent_request->department()->get();                                  //Department::find($rent_request->id_department);
             $department->is_rented = true;
             $department->save();
 
