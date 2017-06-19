@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use App\RentRequest;
+use App\User;
 use Illuminate\Http\Request;
 use League\Flysystem\Exception;
 
@@ -97,6 +98,12 @@ class RentRequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showPendingRequests($id){
+        $user = User::find($id);
+        $departments = Department::where('id_owner',$id);
+        return response()->json($departments);
     }
 
     public function acceptRequest($id){

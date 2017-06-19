@@ -25,3 +25,4 @@ Route::resource('/rent_requests','RentRequestController');
 Route::get('user-departments/{id}','UserController@userDepartments');
 Route::get('login/{user}/{password}','UserController@login');
 Route::get('acceptRequest/{id}','RentRequestController@acceptRequest');
+Route::get('myRequests/{id}','RentRequestController@showPendingRequests');
