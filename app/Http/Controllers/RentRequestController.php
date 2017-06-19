@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Department;
 use App\RentRequest;
 use Illuminate\Http\Request;
+use League\Flysystem\Exception;
 
 class RentRequestController extends Controller
 {
@@ -99,12 +100,19 @@ class RentRequestController extends Controller
     }
 
     public function acceptRequest($id){
-        $rent_request = RentRequest::find($id);
-        $rent_request->status = "aceptada";
-        $rent_request->save;
+        try{
+            $rent_request = RentRequest::find($id);
+            $rent_request->status = 'aceptada';
+            $rent_request->save();
 
-        $department = Department::find($rent_request->id_department);
-        $department->is_rented = true;
-        $department->save();
+            $department = $rent_request->department();                                  //Department::find($rent_request->id_department);
+            $department->is_rented = true;
+            $department->save();
+
+            return response()->json(['msg' => 'Se aprobo la solicitud!']);
+        }catch (Exception $exception){
+            $errorMsg = $exception->getMessage();
+            return response()->json(['msg' => $errorMsg],500);
+        }
     }
 }
