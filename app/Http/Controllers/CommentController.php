@@ -48,8 +48,7 @@ class CommentController extends Controller
             $comment->score = $request->score;
 
             $comment->save();
-            $department = Department::find($request->id_department);
-            $this->updateDepartmentScore($department);
+            $this->updateDepartmentScore($request->id_department);
             return response()->json(['msg' => 'El comentario fue insertado exitosamente']);
         }catch (Exception $exception){
             $errorMsg = $exception->getMessage();
@@ -110,7 +109,8 @@ class CommentController extends Controller
         }
     }
 
-    public function updateDepartmentScore($department){
+    public function updateDepartmentScore($id_department_param){
+        $department = Department::find($id_department_param);
         $comments = $department->comments()->get();
         $comments_amount = count($comments);
         $totalCommentScore = 0;

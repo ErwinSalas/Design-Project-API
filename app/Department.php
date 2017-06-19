@@ -25,7 +25,7 @@ class Department extends Model
 
     public function comments() //comentarios de una propiedad
     {
-        return $this->hasMany('Comments','id_department');
+        return $this->hasMany('App\Comments','id_department');
     }
 
     public function owner() //propietario de una propiedad
