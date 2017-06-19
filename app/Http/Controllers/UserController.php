@@ -117,7 +117,7 @@ class UserController extends Controller
 
     public function login($user,$password){
         $authRequestingUser=DB::table('users')
-            ->where(['email','=', $user],['password','=',$password])
+            ->where([['email','=', $user],['password','=',$password],])
             ->get();
         if($authRequestingUser=!null){
             return $authRequestingUser;
