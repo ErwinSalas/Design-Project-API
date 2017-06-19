@@ -47,12 +47,11 @@ class UserController extends Controller
             $user->phone = $request->phone;
 
             $user->save();
-            return response()->json(['msg' => 'El usuario se creo exitosamente']);
+            return response()->json($user);
         }catch (Exception $exception){
             $errorMsg = $exception->getMessage();
             return response()->json(['msg' => $errorMsg],500);
         }
-
     }
 
     /**

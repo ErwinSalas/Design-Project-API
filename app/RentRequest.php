@@ -16,11 +16,11 @@ class RentRequest extends Model
 
     public function applicant() //propietario de una solicitud
     {
-        return $this->belongsTo('User','id_applicant','id');
+        return $this->belongsTo('App\User','id_applicant','id');
     }
 
-    public function department()
+    public function department() //propiedad que se solicita
     {
-        return $this->belongsTo('Department','id_department','id');
+        return $this->belongsTo('App\Department','id_department','id');
     }
 }

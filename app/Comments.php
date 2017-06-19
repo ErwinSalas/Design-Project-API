@@ -15,11 +15,11 @@ class Comments extends Model
 
     public function department() //departamento al que se realiza un comentario
     {
-        return $this->belongsTo('Department','id_department','id');
+        return $this->belongsTo('App\Department','id_department','id');
     }
 
     public function user() //usuario que hizo el comentario
     {
-        return $this->belongsTo('User','id_user','id');
+        return $this->belongsTo('App\User','id_user','id');
     }
 }

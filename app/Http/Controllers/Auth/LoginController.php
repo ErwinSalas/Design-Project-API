@@ -42,7 +42,7 @@ class LoginController extends Controller
             ->where(['email','=', $user],['password','=',$password])
             ->get();
         if($authRequestingUser=!null){
-            return true;
+            return $authRequestingUser;
         }
         else{
             return false;

@@ -30,10 +30,10 @@ class Department extends Model
 
     public function owner() //propietario de una propiedad
     {
-        return $this->belongsTo('User','id_owner','id');
+        return $this->belongsTo('App\User','id_owner','id');
     }
 
     public function requests(){
-        return $this->hasMany('RentRequest','id_department');
+        return $this->hasMany('App\RentRequest','id_department');
     }
 }

@@ -96,4 +96,14 @@ class RentRequestController extends Controller
     {
         //
     }
+
+    public function acceptRequest($id){
+        $rent_request = RentRequest::find($id);
+        $rent_request->status = "aceptada";
+        $rent_request->save;
+
+        $department = $rent_request->department();
+        $department->is_rented = true;
+        $department->save();
+    }
 }
