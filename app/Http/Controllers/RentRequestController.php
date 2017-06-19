@@ -106,7 +106,10 @@ class RentRequestController extends Controller
         $requests = array();
         foreach($departments as $department){
             $currentDepartmentRequests = RentRequest::where('id_department',$department->id)->get();
-            if($currentDepartmentRequests != []){
+            if(empty($playerlist)){
+                echo "vacio";
+            }
+            else{
                 array_push($requests,$currentDepartmentRequests);
             }
         }
