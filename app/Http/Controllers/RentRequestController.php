@@ -110,7 +110,9 @@ class RentRequestController extends Controller
                 echo "vacio";
             }
             else{
-                array_push($requests,$currentDepartmentRequests);
+                foreach ($currentDepartmentRequests as $currentRequest){
+                    array_push($requests,$currentRequest);
+                }
             }
         }
         return response()->json($requests);
